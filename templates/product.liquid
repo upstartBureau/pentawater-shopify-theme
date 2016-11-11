@@ -1,0 +1,142 @@
+<main class="product">
+<section class="row order">
+  <article class="order-wrapper">
+  <aside class="info">
+    <div class="watermark"></div>
+    <div class="about">
+      <a href="#" class="learn">learn more</a>
+      <h4>ultra purified water</h4>
+      <p class="about-text">Penta water is arsenic-free, chlorine-free, chromium 6-free, fluoride-free, MTBE-free and pharmaceutical-free with less than 1ppm* total dissolved solids.</p>
+      <!-- <hr> -->
+      <!-- <div class="reviews">
+        <div class="star-ratings">★★★★★</div>
+        <div class="review-count">(432)</div>
+        <a href="#">read reviews</a>
+      </div> -->
+    </div>
+  </aside>
+  <aside class="img"></aside>
+
+  <aside class="buy shadow">
+    <form>
+      <h5>penta water</h5>
+      <div class="dropdown-wrapper">
+
+        <select id="foo" class="top">
+
+          {% for variant in product.variants %}
+            <option{% if variant == product.selected_or_first_available_variant %} selected{% endif %} value="{{ variant.id }}" data-price="{{ variant.price | money }}">
+            {{ product.title }} - {{ variant.price | money }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+      <script type="text/javascript">
+        {% for variant in product.variants %}
+          var derp = ['{{ variant.price }}']
+        {% endfor %}
+        var foo = document.getElementById('foo')
+        var bar = foo.options
+        console.log(bar.length)
+
+        foo.addEventListener('change', function(){
+          for (var i = 0; i < bar.length; i++ ) {
+            if (bar[i].selected) console.log(bar[i].dataset.price)
+          }
+        })
+      </script>
+      <div class="dropdown-wrapper">
+        <select>
+          <option value="quantity">1 case <span>(24 bottles)</span></option>
+          <option value="quantity">1 case <span>(24 bottles)</span></option>
+          <option value="quantity">1 case <span>(24 bottles)</span></option>
+          <option value="quantity">1 case <span>(24 bottles)</span></option>
+        </select>
+      </div>
+      <div class="radio-wrapper">
+        <p>delivered</p>
+        <ul>
+          <li>
+            <input type="radio" id="radio-subscribe" name="selector" checked>
+            <div class="check"></div>
+            <label for="radio-subscribe">
+              <span class="mobile">deliver</span>
+              every 30 days<span class="hide"> - $29.95/case
+              <span class="red-text">save $7.00 (15%)</span></span>
+              <span class="mobile gray-text"><br/>save 15%</span>
+            </label>
+          </li>
+          <li>
+            <input type="radio" id="radio-one-time" name="selector">
+            <div class="check"></div>
+            <label for="radio-one-time">
+              <span class="mobile">deliver</span>
+              just once<span class="hide"> - $36.95/case</span>
+              <span class="mobile gray-text"><br/>($36.95)</span>
+            </label>
+          </li>
+        </ul>
+      </div>
+      <div class="button-wrapper">
+        <div class="price">$34.95<span>ships today</span></div>
+        <button type="submit"><div class="mobile-price">$34.95</div>add to cart</button>
+        {% for variant in product.variants %}
+        {% endfor %}
+      </div>
+    </form>
+
+    <div class="buy-fgroup">
+      <a href="#">see how much water you should be drinking ></a>
+    </div>
+
+  </aside>
+  <div class="mobile-info">
+    <h4>ultra purified water</h4>
+    <p>{{ product.description }} <a href="#">read more...</a></p>
+  </div>
+
+</article>
+</section>
+
+<section class="row gray-banner">
+  <article class="content">
+    <ul class="banner">
+      <li class="info">
+        <div class="banner-icons" id="patented-process-purple"></div>
+        <h6>patented process</h6>
+        <p class="banner-text">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+        </p>
+      </li>
+      <li class="info">
+        <div class="banner-icons" id="natural-ph-purple"></div>
+        <h6>natural pH</h6>
+        <p class="banner-text">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+        </p>
+      </li>
+      <li class="info">
+        <div class="banner-icons" id="no-additives-purple"></div>
+        <h6>no additives</h6>
+        <p class="banner-text">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+        </p>
+      </li>
+    </ul>
+  </article>
+</section>
+
+
+<section class="row hydration-calculator">
+  <div class="calculator-wrapper">
+    <hgroup class="shadow">
+      <h5>hydration calculator</h5>
+      <p>see how much water you should be drinking</p>
+      <div class="input-wrapper">
+        <input type="text" placeholder="enter your zip code" />
+        <button class="arrow-blk calculate"></button>
+      </div>
+    </hgroup>
+  </div>
+</section>
+</main>

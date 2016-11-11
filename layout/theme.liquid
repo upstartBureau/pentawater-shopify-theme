@@ -1,0 +1,169 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' /><![endif]-->
+
+  <title>
+  {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}" />
+  {% endif %}
+
+  <link rel="canonical" href="{{ canonical_url }}" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  {% include 'open-graph-tags' %}
+  {% include 'twitter-card' %}
+
+  {{ content_for_header }}
+
+  {{ 'main.css' | asset_url | stylesheet_tag }}
+
+  <!--[if lt IE 9]>
+  {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
+  <![endif]-->
+
+  {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {% if template contains 'customers' %}
+    {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+  {% endif %}
+
+  <!-- Additional Shopify helpers that will likely be added to the global shopify_common.js some day soon. -->
+  {{ 'shopify_common.js'  | asset_url | script_tag }}
+
+  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+
+  {{ '//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' | script_tag }}
+  {{ '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js' | script_tag }}
+  {{ '//cdnjs.cloudflare.com/ajax/libs/Readmore.js/2.2.0/readmore.min.js' | script_tag }}
+  <script>jQuery('html').removeClass('no-js').addClass('js');</script>
+
+</head>
+
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+
+  <header>
+    <nav class="main-nav">
+      <div class="nav-logo"></div>
+      <ul class="center-links">
+        <li class="navlink"><a href="https://pentasandbox101.myshopify.com/collections/frontpage">buy now</a></li>
+        <li class="navlink"><a href="http://pentawater.prvw.space/why.html">why penta</a></li>
+        <li class="navlink"><a href="http://pentawater.prvw.space/furthermore.html">further more</a></li>
+        <li class="navlink"><a href="http://pentawater.prvw.space/locator.html">store locator</a></li>
+      </ul>
+      <ul class="right-links">
+        <li class="hamburger">
+          <div class="hamburger-menu">
+            <div class="bar"></div>
+          </div>
+        </li>
+        <li class="navlink free-shipping"><u>free shipping</u> when you spend over $100</li>
+        <li class="navlink cart"></li>
+      </ul>
+    </nav>
+
+    <div class='dropin hide-big'>
+      <ul class="top">
+        <li><a href="http://pentawater.prvw.space/index.html">home</a></li>
+        <li><a href="https://pentasandbox101.myshopify.com/collections/frontpage">buy now</a></li>
+        <li><a href="http://pentawater.prvw.space/why.html">why penta</a></li>
+        <li><a href="http://pentawater.prvw.space/furthermore.html">further more</a></li>
+        <li><a href="http://pentawater.prvw.space/locator.html">store locator</a></li>
+        <li><a href="http://pentawater.prvw.space/product.html">penta subscription<span>save 15%</span></a></li>
+      </ul>
+      <ul class="bottom">
+        <li>
+          {% if customer %}
+            Logged in as <a href="/account">{{ customer.first_name }}</a> · {{ 'log out' | customer_logout_link }}
+          {% else %}
+            {{ 'log in' | customer_login_link }}
+            {% if shop.customer_accounts_optional %}
+            or {{ 'Create an account' | customer_register_link }}
+            {% endif %}
+          {% endif %}
+          <!-- <a href="#">login</a> -->
+        </li>
+        <li><a href="#">about</a></li>
+        <li><a href="#">shipping / returns</a></li>
+        <li>
+          <a href="#">#livepure</a>
+          <a href="#"><div class="twitter"></div></a>
+          <a href="#"><div class="facebook"></div></a>
+          <a href="#"><div class="instagram"></div></a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  {% comment %}}
+    We have a template file to render.
+    That's what content_for_layout is for.
+  {% endcomment %}
+  <main role="main">
+    {{ content_for_layout }}
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <aside class="copyright copyright-hide">
+        <p>penta</p>
+        <p>&copy; 2016 Penta Water. All Rights Reserved</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Use </a><a href="#"> | <span>View Mobile Site</span></a></p>
+      </aside>
+      <aside class="signup signup-mobile">
+        <form>
+          signup &amp; save 15% off first order</br>
+          <input type="text" name="email" placeholder="enter email address">
+          <button class="arrow-wht enter-email"></button>
+        </form>
+      </aside>
+      <ul class="middle">
+        <li>
+          <p>about</p>
+          <a href="#">why penta?</a>
+          <a href="#">FAQ</a>
+          <a href="#">water quality report</a>
+          <a href="#">find a store</a>
+          <a href="#">contact</a>
+        </li>
+        <li>
+          <p>shipping</p>
+          <a href="#">shipping &amp; returns</a>
+          <a href="#">subscription</a>
+          <a href="#">privacy policy</a>
+        </li>
+        <li>
+          <p>#livepure</p>
+          <a href="#"><div class="instagram"></div>instagram</a>
+          <a href="#"><div class="facebook"></div>facebook</a>
+          <a href="#"><div class="twitter"></div>twitter</a>
+        </li>
+      </ul>
+      <aside class="signup signup-hide">
+        <form>
+          signup & save 15% off first order</br>
+          <input type="text" name="email" placeholder="enter email address">
+          <button class="arrow-wht enter-email"></button>
+        </form>
+      </aside>
+      <aside class="copyright-mobile copyright">
+        <p>penta</p>
+        <p>&copy; 2016 Penta Water. All Rights Reserved</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Use </a><a href="#"> | <span>View Mobile Site</span></a></p>
+      </aside>
+    </div>
+  </footer>
+
+  {{ 'main.js'  | asset_url | script_tag }}
+
+</body>
+
+</html>
